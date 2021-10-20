@@ -1,0 +1,12 @@
+{
+  "beers": [
+    {
+      "id": 1,
+      "name": "Skol"
+    },
+    {
+      "id": 2,
+      "name": "Brahma Duplo Malte"
+    }
+  ]
+}
