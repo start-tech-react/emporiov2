@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-function List() {
+export function List() {
   const [beers, setBeers] = useState([]);
 
   useEffect(() => {
@@ -17,5 +17,3 @@ function List() {
     </ul>
   );
 }
-
-export default List;
