@@ -1,5 +1,5 @@
 import './App.css';
-import { List } from './components/Beer';
+import { List, Create } from './components/Beer';
 import { Col, Container, Row } from 'react-bootstrap';
 
 function App() {
@@ -9,6 +9,7 @@ function App() {
         <Row>
           <Col>
             <h1>Cervejas</h1>
+            <Create />
             <List />
           </Col>
         </Row>
