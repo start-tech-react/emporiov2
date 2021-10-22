@@ -1,18 +1,23 @@
 import { useEffect, useState } from "react";
 
+interface Beer {
+  id: number,
+  name: string
+}
+
 export function List() {
-  const [beers, setBeers] = useState([]);
+  const [beers, setBeers] = useState<Beer[]>([]);
 
   useEffect(() => {
     fetch('http://localhost:8080/beers')
       .then((response) => response.json())
-      .then((data) => setBeers(data));
+      .then((data: Beer[]) => setBeers(data));
   }, []);
 
   return (
     <ul className="Beer-List">
       {
-        beers.map((beer) => <li key={beer.id}>{beer.name}</li>)
+        beers.map((beer: Beer) => <li key={beer.id}>{beer.name}</li>)
       }
     </ul>
   );
