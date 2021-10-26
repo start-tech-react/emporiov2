@@ -1,19 +1,28 @@
 import './App.css';
 import { List, Create } from './components/Beer';
 import { Col, Container, Row } from 'react-bootstrap';
-import { useState } from 'react';
+import { Switch, Route } from 'react-router-dom';
+import { Home } from './components/Home';
+import { Menu } from './components/Shared/Menu';
 
 function App() {
-  const [refresh, setRefresh] = useState(true);
-
   return (
     <div className="App">
+      <Menu />
       <Container>
         <Row>
           <Col>
             <h1>Cervejas</h1>
-            <Create onCreated={() => setRefresh(true)} />
-            <List refresh={refresh} onRefreshed={() => setRefresh(false)} />
+            <Switch>
+              <Route component={Home} path="/" exact />
+              <Route component={List} path="/beers" exact />
+              <Route path="/beers/create">
+                <Create />
+              </Route>
+              <Route path="*">
+                <h4>Página não encontrada...</h4>
+              </Route>
+            </Switch>
           </Col>
         </Row>
       </Container>

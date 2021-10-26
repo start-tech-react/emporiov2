@@ -1,4 +1,5 @@
 import { FormEvent, useState } from "react";
+import { useHistory } from 'react-router-dom';
 
 // ToDo: interface duplicada
 interface Beer {
@@ -6,9 +7,10 @@ interface Beer {
   name: string
 }
 
-export function Create({
-  onCreated
-}: { onCreated: Function }) {
+export function Create() {
+  let history = useHistory();
+  console.log(history);
+
   const [beer, setBeer] = useState<Beer>({ name: '' });
 
   const saveBeer = async (ev: FormEvent<HTMLFormElement>) => {
@@ -26,8 +28,7 @@ export function Create({
       },
       body: JSON.stringify(beer) // transformando um objeto em texto-json
     });
-    onCreated(); // atualiza a listagem de cervejas
-    setBeer({ name: '' }); // limpa o input
+    history.push('/beers');
   }
 
   return (
