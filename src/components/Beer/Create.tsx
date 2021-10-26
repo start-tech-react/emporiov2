@@ -9,7 +9,7 @@ interface Beer {
 export function Create({
   onCreated
 }: { onCreated: Function }) {
-  const [beer, setBeer] = useState<Beer>({} as Beer);
+  const [beer, setBeer] = useState<Beer>({ name: '' });
 
   const saveBeer = async (ev: FormEvent<HTMLFormElement>) => {
     if (beer.name.length < 3) {
