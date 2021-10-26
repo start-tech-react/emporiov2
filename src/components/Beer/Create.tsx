@@ -1,11 +1,14 @@
 import { FormEvent, useState } from "react";
 
+// ToDo: interface duplicada
 interface Beer {
   id?: number,
   name: string
 }
 
-export function Create() {
+export function Create({
+  onCreated
+}: { onCreated: Function }) {
   const [beer, setBeer] = useState<Beer>({} as Beer);
 
   const saveBeer = async (ev: FormEvent<HTMLFormElement>) => {
@@ -23,12 +26,15 @@ export function Create() {
       },
       body: JSON.stringify(beer) // transformando um objeto em texto-json
     });
+    onCreated(); // atualiza a listagem de cervejas
+    setBeer({ name: '' }); // limpa o input
   }
 
   return (
     <form onSubmit={saveBeer}>
       <input
         type="text"
+        value={beer.name}
         required
         minLength={3}
         onChange={(ev) => setBeer({ name: ev.target.value })}
