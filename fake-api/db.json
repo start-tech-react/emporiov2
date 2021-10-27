@@ -8,5 +8,11 @@
       "id": 2,
       "name": "Brahma Duplo Malte"
     }
+  ],
+  "wines": [
+    {
+      "id": 1,
+      "name": "Vinho Tinto Relevos"
+    }
   ]
 }

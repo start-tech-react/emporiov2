@@ -14,9 +14,9 @@ export function Menu() {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link as={Link} to="/">Home</Nav.Link>
-            <NavDropdown title="Cervejas" id="basic-nav-dropdown">
-              <NavDropdown.Item as={Link} to="/beers">Listagem</NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/beers/create">Adicionar</NavDropdown.Item>
+            <NavDropdown title="Produtos" id="basic-nav-dropdown">
+              <NavDropdown.Item as={Link} to="/beers">Cervejas</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/wines">Vinhos</NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>

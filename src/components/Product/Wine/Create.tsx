@@ -1,44 +1,38 @@
 import { FormEvent, useState } from "react";
 import { useHistory } from 'react-router-dom';
-
-// ToDo: interface duplicada
-interface Beer {
-  id?: number,
-  name: string
-}
+import { Wine } from "../../../models/interfaces";
 
 export function Create() {
   let history = useHistory();
-  console.log(history);
 
-  const [beer, setBeer] = useState<Beer>({ name: '' });
+  const [wine, setWine] = useState<Wine>({ name: '' });
 
-  const saveBeer = async (ev: FormEvent<HTMLFormElement>) => {
-    if (beer.name.length < 3) {
+  const saveWine = async (ev: FormEvent<HTMLFormElement>) => {
+    if (wine.name.length < 3) {
       alert('digite ao menos 3 caracteres');
       return;
     }
 
     ev.preventDefault();
 
-    await fetch('http://localhost:8080/beers', {
+    await fetch('http://localhost:8080/wines', {
       method: 'POST', // usado para criar um novo registro (padrão REST)
       headers: {
         'Content-Type': 'application/json' // define que o dado enviado é um json
       },
-      body: JSON.stringify(beer) // transformando um objeto em texto-json
+      body: JSON.stringify(wine) // transformando um objeto em texto-json
     });
-    history.push('/beers');
+    history.push('/wines');
   }
 
   return (
-    <form onSubmit={saveBeer}>
+    <form onSubmit={saveWine}>
       <input
         type="text"
-        value={beer.name}
+        value={wine.name}
         required
         minLength={3}
-        onChange={(ev) => setBeer({ name: ev.target.value })}
+        onChange={(ev) => setWine({ name: ev.target.value })}
       />
       <button type="submit">Salvar</button>
     </form>
