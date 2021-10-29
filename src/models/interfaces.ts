@@ -4,6 +4,6 @@ export interface Wine {
 }
 
 export interface Beer {
-  id?: number,
+  id: number,
   name: string
 }

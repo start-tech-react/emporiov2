@@ -10,6 +10,10 @@ export function List() {
   const history = useHistory();
 
   useEffect(() => {
+    loadBeers();
+  }, []);
+
+  const loadBeers = () => {
     setIsLoading(true);
     fetch('http://localhost:8080/beers')
       .then((response) => response.json())
@@ -21,7 +25,26 @@ export function List() {
         }
       })
       .finally(() => setIsLoading(false));
-  }, []);
+  }
+
+  const handleDeleteBeer = (beerId: number) => {
+    console.log(beerId);
+
+    const shouldDelete = window.confirm('Deseja realmente excluir esse item?');
+
+    if (!shouldDelete) {
+      return;
+    }
+
+    fetch(`http://localhost:8080/beers/${beerId}`, {
+      method: 'DELETE',
+    })
+      .then((response) => {
+        if (response.status === 200) {
+          loadBeers();
+        }
+      });
+  }
 
   if (isLoading) {
     return (
@@ -61,7 +84,7 @@ export function List() {
                     <MdModeEdit />
                   </Button>
                   {' '}
-                  <Button variant="outline-danger">
+                  <Button variant="outline-danger" onClick={() => handleDeleteBeer(beer.id)}>
                     <MdDelete />
                   </Button>
                 </td>

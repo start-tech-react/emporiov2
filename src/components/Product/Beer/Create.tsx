@@ -1,12 +1,16 @@
 import { FormEvent, useState } from "react";
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { Beer } from "../../../models/interfaces";
 
 export function Create() {
   let history = useHistory();
-  console.log(history);
+  const { beerId } = useParams<any>();
 
-  const [beer, setBeer] = useState<Beer>({ name: '' });
+  const [beer, setBeer] = useState<Beer>({ id: beerId ?? null, name: '' });
+
+  if (beerId) {
+    // ToDo: fazer a busca na API.
+  }
 
   const saveBeer = async (ev: FormEvent<HTMLFormElement>) => {
     if (beer.name.length < 3) {
@@ -33,7 +37,12 @@ export function Create() {
         value={beer.name}
         required
         minLength={3}
-        onChange={(ev) => setBeer({ name: ev.target.value })}
+        onChange={(ev) => setBeer((state) => {
+          return {
+            ...state,
+            ...{ name: ev.target.value }
+          }
+        })}
       />
       <button type="submit">Salvar</button>
     </form>
